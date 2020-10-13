@@ -21,6 +21,8 @@ export const singIn = async (req, res) => {
 
   res.json({token: token});
 };
+
+
 export const singUp = async (req, res) => {
   // const userFound = User.find({email})
 
@@ -36,6 +38,7 @@ export const singUp = async (req, res) => {
   if (roles) {
     const foundRoles = await Role.find({ name: { $in: roles } });
     user.roles = foundRoles.map((r) => r._id);
+    // console.log(user.roles)
   } else {
     const role = await Role.findOne({ name: "user" });
     user.roles = [role._id];
